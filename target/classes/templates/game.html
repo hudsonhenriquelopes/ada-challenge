@@ -1,0 +1,65 @@
+<html>
+<head>
+    <style>
+        .container-cards {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .card-movie {
+            /* Add shadows to create the "card" effect */
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            transition: 0.3s;
+            width: 92%;
+            max-width: 300px;
+        }
+
+        /* On mouse-over, add a deeper shadow */
+        .card-movie:hover {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Add some padding inside the card container */
+        .card-movie-container {
+            padding: 2px 16px;
+        }
+    </style>
+</head>
+<body>
+<th:block>
+    <div style="text-align: -webkit-center;">
+
+        <div>
+            <div>
+                <h2>Qual dos dois foi melhor avaliado?</h2>
+            </div>
+            <div>
+                <h3><b>Acertos:</b> [[${match.points}]] | <b>Erros:</b> [[${match.errors}]]</h3>
+            </div>
+
+            <div>
+                <a th:href="${url_end}">Recomeçar</a>
+                <a th:href="${url_ranking}">Ranking</a>
+                <a th:href="${url_logout}">Sair</a>
+            </div>
+        </div>
+
+        <div style="text-align: -webkit-center;" class="container-cards">
+            <form action="/game" id="form" method="POST" style="width: 100%; columns: 2">
+                <div class="card-movie"
+                     onclick="document.getElementById('answer').value = this.id; document.getElementById('form').submit();"
+                     th:each="movie: ${movies}"
+                     th:id="${movie.id()}">
+                    <img th:alt="${movie.title()}" th:src="${movie.poster()}">
+                    <div class="card-movie-container">
+                        <h4><b>[[${movie.title}]]</b></h4>
+                        <p>[[${movie.plot}]]</p>
+                    </div>
+                </div>
+                <input id="answer" name="answer" type="hidden" value="">
+            </form>
+        </div>
+    </div>
+</th:block>
+</body>
+</html>

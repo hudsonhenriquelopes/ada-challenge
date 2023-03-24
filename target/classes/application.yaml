@@ -1,0 +1,31 @@
+#spring.application.name=ada-desafio
+#server.port=8101
+omdb:
+  api:
+    search-url: https://www.omdbapi.com
+    img-url: https://img.omdbapi.com
+  api-key: fca5047
+  api-search-title: Batman
+  api-search-limit: 1
+
+# Database configuration
+spring:
+  datasource:
+    url: jdbc:h2:mem:localdb
+    user: sa
+    password:
+  jpa:
+    hibernate.ddl-auto: create-drop
+    defer-datasource-initialization: true
+  h2.console:
+    enabled: true
+    path: /h2-console
+  thymeleaf:
+    cache: true
+    prefix: classpath:/templates/
+  web.resources.static-locations: classpath:/static/
+#####################################
+#management.endpoints.web.exposure.include=*
+#springdoc.swagger-ui.enabled=true
+#springdoc.version:'@springdoc.version@'
+#springdoc.model-and-view-allowed=true

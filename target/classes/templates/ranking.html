@@ -1,0 +1,67 @@
+<html lang="uk">
+<head>
+    <style>
+        table.ranking-table {
+            width: 100%;
+            max-width: 80%;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            border-width: 2px;
+            border-color: #d9d9d9;
+            border-style: solid;
+            color: #000000;
+        }
+
+        table.ranking-table td, table.ranking-table th {
+            border-width: 2px;
+            border-color: #d9d9d9;
+            border-style: solid;
+            padding: 3px;
+        }
+
+        table.ranking-table thead {
+            background-color: #e6e6e6;
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+<th:block>
+    <div style="text-align: -webkit-center;">
+
+        <div>
+            <div>
+                <h2>Ranking</h2>
+            </div>
+            <div>
+                <a th:href="${url_end}">Jogar</a>
+                <a th:href="${url_logout}">Sair</a>
+            </div>
+        </div>
+
+        <div style="text-align: -webkit-center;">
+            <table class="ranking-table" th:if="${matches != null}">
+                <thead>
+                <tr>
+                    <th>Usuário</th>
+                    <th>Acertos</th>
+                    <th>Erros</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="match, iStat: ${matches}" th:id="${iStat.index}">
+                    <td>[[${match.username()}]]</td>
+                    <td>[[${match.points()}]]</td>
+                    <td>[[${match.errors()}]]</td>
+                </tr>
+                </tbody>
+            </table>
+            <div style="height: 30px; width: 30px;" th:if="${matches == null}">
+                Não existem informações disponíveis para o ranking.
+            </div>
+        </div>
+    </div>
+
+</th:block>
+</body>
+</html>
