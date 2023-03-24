@@ -1,6 +1,6 @@
 # ada-challenge
 
-Users for H2database:
+Users:
 - login: user01 / password: password01
 - login: user02 / password: password02
 - login: user03 / password: password03
